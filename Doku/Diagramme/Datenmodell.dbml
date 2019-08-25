@@ -1,0 +1,50 @@
+Table Trader {
+  ID int [pk]
+  KontoID int [not null, unique, ref: - Konto.ID]
+  DepotID int [not null, unique, ref: - Depot.ID]
+	Name varchar [not null, unique]
+  Passwort varchar [not null]
+}
+
+Table Depot {
+  ID int [pk]
+  DepotPositionID int [ref: < DepotPosition.ID]
+}
+
+Table DepotPosition {
+  ID int [pk]
+  WarenID int [ref: > Waren.ID]
+  Menge int
+}
+
+Table DepotTransaktion {
+  ID int [pk]
+  DepotPositionID int [ref: < DepotPosition.ID]
+  Zeit datetime
+  Menge int
+  Stueckpreis double
+}
+
+Table Waren {
+  ID int [pk]
+  Short char[3]
+  Name varchar
+}
+
+Table MarktWaren {
+  ID int [pk]
+  WarenID int [ref: < Waren.ID]
+  AngebotMenge int
+  Preis int
+}
+
+Table Konto {
+  ID int [pk]
+  Guthaben double
+}
+
+Table KontoTransaktion {
+  ID int [pk]
+  KontoID int [ref: > Konto.ID]
+  Zeit datetime
+}

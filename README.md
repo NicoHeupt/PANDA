@@ -66,6 +66,12 @@ Ein virtueller Markt auf dem mit Waren gehandelt werden kann.
 * ❓ Lizenz
   * [MIT](https://de.wikipedia.org/wiki/MIT-Lizenz)
 
+
+## Datenmodell
+Entwurf eines Datenmodells des Marktes
+![Datenmodell](Doku/Diagramme/Datenmodell.png)
+
+
 ## Brainstorming
 * Bots (automatisierte Clients)
   * Automatisierter Händler der nach einem Algorithmus Gewinn macht
