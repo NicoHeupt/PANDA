@@ -20,8 +20,7 @@ Ein virtueller Markt auf dem mit Waren gehandelt werden kann.
 * ❓ Woher die Daten nehmen?
   * Welche kommt als Anforderung ins Lastenheft?
     * Unten diskutierte Möglichkeiten laufen hinaus auf zwei Optionen:
-        * Klassisches Börsenplanspiel (vgl. z.B. [FAZ Börsenspiel](https://boersenspiel.faz.net/boersenspiel/index.htn?gId=206))
-        * Eigene, kleine Marktsimulation, wie in manchen PC-Spielen
+        * ✅ Eigene, kleine Marktsimulation, wie in manchen PC-Spielen
   * Mögliche Datenquellen
     * __Random Werte__
       * ✅ easy
@@ -34,12 +33,12 @@ Ein virtueller Markt auf dem mit Waren gehandelt werden kann.
       * ✅ cool
       * ✅ realistisch
       * ❌ Einfluss des Spielers nur schwer zu realisieren
-      * ❓ wie anspruchsvoll? -> Paul recherchiert
+      * passt nicht zu Anforderung
         * Wenn dann macht nur _Option 2_ (siehe unten) Sinn
       * _Variante A:_ Live-Daten
       * _Variante B:_ historische Daten
       * Einfluss der Spieler auf den Markt
-        * ❓ Wie wird die Abweichung zu den Realdaten behandelt?
+        * Wie wird die Abweichung zu den Realdaten behandelt?
           * _Option 1:_ Nur der Startpunkt sind Echtdaten, danach eins der anderen Modelle
             * ❌ witzlos, weil wen interessiert es, wie die Ausgangssituation hergestellt wird?
           * _Option 2:_ Spielerhandeln schlägt sich nicht im Markt nieder
