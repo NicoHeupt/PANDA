@@ -12,10 +12,11 @@ Ein virtueller Markt auf dem mit Waren gehandelt werden kann.
 
 ## Fragen
 ### Konzeptionelles
-* ❓ Rundenbasiert oder Echtzeit
-* ❓ Welche Prozesse müssen definiert werden?
+* ✅ Echtzeit
+* Welche Prozesse müssen definiert werden?
   * Kaufen
   * Verkaufen
+  * Neue Waren auf den Markt bringt
 * ❓ Woher die Daten nehmen?
   * Welche kommt als Anforderung ins Lastenheft?
     * Unten diskutierte Möglichkeiten laufen hinaus auf zwei Optionen:
@@ -81,3 +82,4 @@ Entwurf eines Datenmodells des Marktes
   * Zuwachs und Verluste
     * Als Tabelle in grün und rot
     * Liniendiagramm vom Verlauf
+* Handel zwischen Spielern
