@@ -17,7 +17,7 @@ Ein virtueller Markt auf dem mit Waren gehandelt werden kann.
   * Kaufen
   * Verkaufen
   * Neue Waren auf den Markt bringt
-* ❓ Woher die Daten nehmen?
+* Woher die Daten nehmen?
   * Welche kommt als Anforderung ins Lastenheft?
     * Unten diskutierte Möglichkeiten laufen hinaus auf zwei Optionen:
         * ✅ Eigene, kleine Marktsimulation, wie in manchen PC-Spielen
@@ -50,20 +50,18 @@ Ein virtueller Markt auf dem mit Waren gehandelt werden kann.
       * Mögliche Quellen:
         * [Alpha Vantage](https://www.alphavantage.co)
 ### Technisches
-* ❓ Plattform
-  * .NetCore
-* ❓ UI Server
-  * Weboberfläche
-  * Windows GUI
-  * Konsolenanwendung
-* ❓ UI Client
-  * Weboberfläche
-  * Windows GUI
-* ❓ Kommunikation zwischen Server u. Client, wie?
-* ❓ User Accounts?
-  * einfach Tabelle mit Username+Passwort+Portfolio
+* Plattform Server
+  * ASP.NET Core 2.2
+  * UI: Weboberfläche
+* Client
+  * ASP.NET Core 2.2
+  * UI: Weboberfläche
+* Kommunikation zwischen Server u. Client
+  * RESTful API
+* User Accounts
+  * einfach Tabelle mit Username+Passwort+Konto+Depot
 ### Management und Wirtschaft 
-* ❓ Lizenz
+* Lizenz
   * [MIT](https://de.wikipedia.org/wiki/MIT-Lizenz)
 
 
