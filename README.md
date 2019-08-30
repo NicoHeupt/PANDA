@@ -80,3 +80,5 @@ Entwurf eines Datenmodells des Marktes
     * Als Tabelle in grün und rot
     * Liniendiagramm vom Verlauf
 * Handel zwischen Spielern
+* Datieren von zukünftigen automatischen Verkäufen
+* Scripting (geht ja eigentlich eh über die API aber entsprechend dokumentieren)
