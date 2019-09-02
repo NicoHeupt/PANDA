@@ -111,7 +111,7 @@ Man muss nur Daten abfragen (GET) und Buchungsaufträge erteilen (POST). Vorerst
   * /api/market/LAX - MarktWare des Produktes 'LAX'
   * /api/traders - alle Händler
   * /api/traders/JBelfort - ein bestimmter Händler
-  * /api/traders/JBelfort/depot - Depot eines Händlers
+  * /api/traders/JBelfort/depot - Depot eines Händlers (alle Positionen)
   * /api/traders/JBelfort/depot/LAX - Depot-Postion für Product 'LAX'
   * /api/traders/JBelfort/depot/trans - alle Depot-Transaktionen
   * /api/traders/JBelfort/depot/trans/123 - Depot-Transaktion Nr. 123
