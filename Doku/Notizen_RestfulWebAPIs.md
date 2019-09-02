@@ -97,6 +97,13 @@
     * Zusatzinfos geben, da wo sie nützlich sind
   * Caching (??)
     * ETags
+  * Versionierung
+    * für dieses Projekt overkill
+    * Möglichkeiten
+      * in der URI - /api/v2/...
+      * Query String - /api/...?v=2.0
+      * Header - (X-Version, Accept Header)
+      * Custom Content Types
 
 
 
