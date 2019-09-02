@@ -104,25 +104,25 @@
 Entwurf einer RESTful Panda API (first time api designer, please be gentle). Das Ändern von Daten in der DB obliegt dem Server, der das lokal erledigt, d.h. dafür ist (erstmal) keine API nötig.
 Man muss nur Daten abfragen (GET) und Buchungsaufträge erteilen (POST). Vorerst sind alle Daten für jeden öffentlich.
 
-* GET: Info abfragen
-  * /api/products - alle Produkte
-  * /api/products/LAX - das Produkt mit Kurznamen 'LAX'
-  * /api/market - alle MarktWaren auf dem Markt (siehe ERM)
-  * /api/market/LAX - MarktWare des Produktes 'LAX'
-  * /api/traders - alle Händler
-  * /api/traders/JBelfort - ein bestimmter Händler
-  * /api/traders/JBelfort/depot - Depot eines Händlers (alle Positionen)
-  * /api/traders/JBelfort/depot/LAX - Depot-Postion für Product 'LAX'
-  * /api/traders/JBelfort/depot/trans - alle Depot-Transaktionen
-  * /api/traders/JBelfort/depot/trans/123 - Depot-Transaktion Nr. 123
-  * /api/traders/JBelfort/depot/trans/LAX - Depot-Transaktionen für Product 'LAX'
-  * /api/traders/JBelfort/depot/trans/27-09-2019 - Depot-Transaktionen vom 27.09.2019
-  * /api/traders/JBelfort/bank - Bankkonto eines Händlers
-  * /api/traders/JBelfort/bank/trans/123 - Bank-Transaktion 123
-  * /api/traders/JBelfort/bank/trans/27-09-2019 - Bank-Transaktionen vom 27.09.2019
+* __GET__: Info abfragen
+  * __/api/products__ - alle Produkte
+  * __/api/products/LAX__ - das Produkt mit Kurznamen 'LAX'
+  * __/api/market__ - alle MarktWaren auf dem Markt (siehe ERM)
+  * __/api/market/LAX__ - MarktWare des Produktes 'LAX'
+  * __/api/traders__ - alle Händler
+  * __/api/traders/JBelfort__ - ein bestimmter Händler
+  * __/api/traders/JBelfort/depot__ - Depot eines Händlers (alle Positionen)
+  * __/api/traders/JBelfort/depot/LAX__ - Depot-Postion für Product 'LAX'
+  * __/api/traders/JBelfort/depot/trans__ - alle Depot-Transaktionen
+  * __/api/traders/JBelfort/depot/trans/123__ - Depot-Transaktion Nr. 123
+  * __/api/traders/JBelfort/depot/trans/LAX__ - Depot-Transaktionen für Product 'LAX'
+  * __/api/traders/JBelfort/depot/trans/27-09-2019__ - Depot-Transaktionen vom 27.09.2019
+  * __/api/traders/JBelfort/bank__ - Bankkonto eines Händlers
+  * __/api/traders/JBelfort/bank/trans/123__ - Bank-Transaktion 123
+  * __/api/traders/JBelfort/bank/trans/27-09-2019__ - Bank-Transaktionen vom 27.09.2019
 
-* POST: für buchungsauftrag 
-  * URI: /api/orders
+* __POST__: für buchungsauftrag 
+  * URI: __/api/orders__
   * Content (application/json):
     * ```json
       "action": "buy",
