@@ -79,6 +79,8 @@ Entwurf eines Datenmodells des Marktes
   * Zuwachs und Verluste
     * Als Tabelle in grün und rot
     * Liniendiagramm vom Verlauf
+  * Server-side Realtime Charts mit SignalR
 * Handel zwischen Spielern
 * Datieren von zukünftigen automatischen Verkäufen
 * Scripting (geht ja eigentlich eh über die API aber entsprechend dokumentieren)
+* Scoreboards
