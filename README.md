@@ -9,6 +9,7 @@ PANDa ist ein virtueller Marktplatz, auf dem fiktive Wertpapiere gehandelt werde
 ## Dank & Verantwortung
 PANDa ist ein Projekt von:
 [Paul Seibel](https://github.com/Circlebit)
+[Nico Heupt](https://github.com/NicoHeupt) 
 
 ### Wir danken den Urhebern der verwendeten Bilder:
 [Erik Mclean](https://unsplash.com/photos/2V0PGUcNORE), [Boey Jun Hui](https://unsplash.com/photos/khs8vg-s4Ac), [Karine Germain](https://unsplash.com/photos/iIWCjgK3704)
