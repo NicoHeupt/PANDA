@@ -10,6 +10,7 @@ namespace Server.Models
     /// </summary>
     public class Product
     {
+        public int Id { get; set; }
         /// <summary>
         /// unique three letter code to identify the product, e.g. "LAX"
         /// </summary>

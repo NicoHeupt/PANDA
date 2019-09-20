@@ -7,8 +7,11 @@ namespace Server.Models
 {
     public class DepotPosition
     {
-        public Product Product { get; }
+        public int Id { get; }
+        public Depot Depot { get; }
+        public int DepotId { get; set; }
 
+        public Product Product { get; }
         public int Amount { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace Server.Models
     /// </summary>
     public class MarketProduct
     {
+        public Market Market { get; set; }
         /// <summary>
         /// Code of the product
         /// </summary>

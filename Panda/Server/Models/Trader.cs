@@ -10,10 +10,13 @@ namespace Server.Models
     /// </summary>
     public class Trader
     {
+        public int Id { get; set; }
+
         /// <summary>
         /// Username
         /// </summary>
         public string Name { get; }
+
         public BankAccount BankAccount { get; private set; }
         public Depot Depot { get; private set; }
     }
