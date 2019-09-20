@@ -8,11 +8,9 @@ namespace Server.Models
     public class DepotTransaction
     {
         public int Id { get; set; }
-        public DepotPosition DepotPosition { get; set; }
-        public int DepotPositionId { get; set; }
+
         public Depot Depot { get; set; }
         public int DepotId { get; set; }
-
         
         public Product Product { get; set; }
         public int ProductId { get; set; }

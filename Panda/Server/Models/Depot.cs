@@ -12,5 +12,6 @@ namespace Server.Models
         public int TraderId { get; set; }
 
         public List<DepotPosition> Positions { get; set; }
+        public List<DepotTransaction> Transactions { get; set; }
     }
 }
