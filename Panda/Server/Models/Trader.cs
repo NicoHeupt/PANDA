@@ -15,9 +15,9 @@ namespace Server.Models
         /// <summary>
         /// Username
         /// </summary>
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public BankAccount BankAccount { get; private set; }
-        public Depot Depot { get; private set; }
+        public BankAccount BankAccount { get; set; }
+        public Depot Depot { get; set; }
     }
 }

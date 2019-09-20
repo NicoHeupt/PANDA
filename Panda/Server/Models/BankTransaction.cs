@@ -8,11 +8,10 @@ namespace Server.Models
     public class BankTransaction
     {
         public int Id { get; set; }
-        public int BankAccountId { get; }
-        public BankAccount BankAccount { get; }
+        public int BankAccountId { get; set; }
+        public BankAccount BankAccount { get; set; }
 
-        public DateTime Time { get; }
-        public decimal Amount { get; }
-        public BankAccount Account { get; }
+        public DateTime Time { get; set; }
+        public decimal Amount { get; set; }
     }
 }

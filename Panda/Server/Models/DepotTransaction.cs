@@ -7,28 +7,28 @@ namespace Server.Models
 {
     public class DepotTransaction
     {
-        public int Id { get; }
+        public int Id { get; set; }
         public DepotPosition DepotPosition { get; set; }
         public int DepotPositionId { get; set; }
-        public Depot Depot { get => DepotPosition.Depot; }
-        public int DepotId { get => DepotPosition.Depot.Id; }
+        public Depot Depot { get; set; }
+        public int DepotId { get; set; }
 
         
-        public Product Product { get; }
-        public int ProductId { get; }
+        public Product Product { get; set; }
+        public int ProductId { get; set; }
 
         /// <summary>
         /// number of pieces sold
         /// positive value means Trader BUYS from market
         /// negative value means Trader SELLS to market
         /// </summary>
-        public int Amount { get; }
+        public int Amount { get; set; }
 
         /// <summary>
         /// price per piece that was paid
         /// </summary>
-        public decimal Price { get; }
+        public decimal Price { get; set; }
 
-        public DateTime Time { get; }
+        public DateTime Time { get; set; }
     }
 }

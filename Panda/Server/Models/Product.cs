@@ -14,7 +14,7 @@ namespace Server.Models
         /// <summary>
         /// unique three letter code to identify the product, e.g. "LAX"
         /// </summary>
-        public string Code { get; }
+        public string Code { get; set; }
 
         /// <summary>
         /// number of pieces that have been introduced until now

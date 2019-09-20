@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,14 +11,11 @@ namespace Server.Models
     /// </summary>
     public class MarketProduct
     {
-        public Market Market { get; set; }
-        /// <summary>
-        /// Code of the product
-        /// </summary>
-        public string Code { get => Product.Code; }
+        public int Id { get; set; }
 
-        public Product Product { get; }
-
+        public Product Product { get; set; }
+        public int ProductId { get; set; }
+        
         /// <summary>
         /// number of pieces available to buy
         /// </summary>
