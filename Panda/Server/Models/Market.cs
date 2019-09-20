@@ -7,6 +7,6 @@ namespace Server.Models
 {
     public class Market
     {
-        public List<MarketProduct> MarketProducts { get; set; }
+        public List<MarketProduct> MarketProducts { get; private set; }
     }
 }

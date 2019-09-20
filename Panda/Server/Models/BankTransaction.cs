@@ -7,8 +7,8 @@ namespace Server.Models
 {
     public class BankTransaction
     {
-        public DateTime Time { get; private set; }
-        public decimal Amount { get; private set; }
-        public BankAccount Account { get; private set; }
+        public DateTime Time { get; }
+        public decimal Amount { get; }
+        public BankAccount Account { get; }
     }
 }

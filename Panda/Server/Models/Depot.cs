@@ -7,5 +7,6 @@ namespace Server.Models
 {
     public class Depot
     {
+        public List<DepotPosition> Positions { get; private set; }
     }
 }
