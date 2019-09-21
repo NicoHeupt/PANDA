@@ -19,5 +19,6 @@ namespace Server.Models
 
         public BankAccount BankAccount { get; set; }
         public Depot Depot { get; set; }
+        public List<BookingOrder> BookingOrders { get; set; }
     }
 }
