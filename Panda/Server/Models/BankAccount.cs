@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Server.Models
 {
@@ -12,6 +9,6 @@ namespace Server.Models
         public Trader Trader { get; set; }
 
         public decimal Balance { get; set; }
-        public List<BankTransaction> BankTransactions { get; set; }
+        public ICollection<BankTransaction> BankTransactions { get; set; }
     }
 }

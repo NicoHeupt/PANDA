@@ -11,7 +11,7 @@ namespace Server.Models
         public Trader Trader { get; set; }
         public int TraderId { get; set; }
 
-        public List<DepotPosition> Positions { get; set; }
-        public List<DepotTransaction> Transactions { get; set; }
+        public ICollection<DepotPosition> Positions { get; set; }
+        public ICollection<DepotTransaction> Transactions { get; set; }
     }
 }
