@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Server.Models
+namespace Server.Entities
 {
     /// <summary>
     /// represents product offerings on the market

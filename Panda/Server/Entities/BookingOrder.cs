@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Server.Models
+namespace Server.Entities
 {
     /// <summary>
     /// A planned Transaction. BookingOrders are queued and only executed if a threshold price is met.

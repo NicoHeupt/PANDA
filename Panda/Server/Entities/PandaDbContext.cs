@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Server.Models
+namespace Server.Entities
 {
     public class PandaDbContext : DbContext
     {

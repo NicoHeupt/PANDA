@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Server.Models
+namespace Server.Entities
 {
     public class BankAccount
     {

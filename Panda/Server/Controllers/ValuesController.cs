@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Server.Models;
+using Server.Entities;
 
 namespace Server.Controllers
 {
@@ -28,8 +28,8 @@ namespace Server.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Trader>> Get()
         {
-            var result = pandaRepo.GetAllTraders();
-            return Ok(result);
+            var traderModels = pandaRepo.GetAllTraders().Select(t => new Models.TraderModel(t));
+            return Ok(traderModels);
         }
 
         // GET api/values/5
