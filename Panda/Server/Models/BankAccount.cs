@@ -10,5 +10,10 @@ namespace Server.Models
 
         public decimal Balance { get; set; }
         public ICollection<BankTransaction> BankTransactions { get; set; }
+
+        public BankAccount()
+        {
+            Balance = 0;
+        }
     }
 }

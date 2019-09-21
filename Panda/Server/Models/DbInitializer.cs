@@ -14,6 +14,9 @@ namespace Server.Models
             {
                 var newTrader = new Trader("JBelfort");
                 pandaRepository.AddTrader(newTrader);
+
+                newTrader = new Trader("WBuffett");
+                pandaRepository.AddTrader(newTrader);
             }
             traders = pandaRepository.GetAllTraders();
         }
