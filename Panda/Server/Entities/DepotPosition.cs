@@ -1,17 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Server.Entities
 {
+    /// <summary>
+    /// Representation of pieces of a product in a Depot.
+    /// Uses Composite Key of ProductCode and DepotId as PK.
+    /// </summary>
     public class DepotPosition
     {
-        public int Id { get; set; }
-        public Depot Depot { get; set; }
+        [ForeignKey("Depot")]
         public int DepotId { get; set; }
-
+        public Depot Depot { get; set; }
+        
+        [ForeignKey("Product")]
+        public string ProductCode { get; set; }
         public Product Product { get; set; }
+
         public int Amount { get; set; }
     }
 }

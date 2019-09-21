@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Server.Entities
 {
@@ -10,15 +7,20 @@ namespace Server.Entities
     /// </summary>
     public class Product
     {
-        public int Id { get; set; }
         /// <summary>
         /// unique three letter code to identify the product, e.g. "LAX"
         /// </summary>
+        [Key]
         public string Code { get; set; }
 
         /// <summary>
         /// number of pieces that have been introduced until now
         /// </summary>
         public int AmountOverall { get; set; }
+
+        public Product(string code)
+        {
+            Code = code;
+        }
     }
 }

@@ -12,5 +12,11 @@ namespace Server.Entities
         public PandaDbContext(DbContextOptions<PandaDbContext> options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<DepotPosition>()
+                .HasKey(dp => new { dp.ProductCode, dp.DepotId });
+        }
     }
 }

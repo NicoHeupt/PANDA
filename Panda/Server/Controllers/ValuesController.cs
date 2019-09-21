@@ -29,6 +29,11 @@ namespace Server.Controllers
         public ActionResult<IEnumerable<Trader>> Get()
         {
             var traderModels = pandaRepo.GetAllTraders().Select(t => new Models.TraderModel(t));
+
+            var products = pandaRepo.GetAllProducts();
+
+            var allTradersFull = pandaRepo.GetAllTraders();
+
             return Ok(traderModels);
         }
 

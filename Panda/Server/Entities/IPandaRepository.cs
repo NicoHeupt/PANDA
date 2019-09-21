@@ -11,6 +11,6 @@ namespace Server.Entities
 
         // Products
         IEnumerable<Product> GetAllProducts();
-        void AddProduct(Product product);
+        void AddMarketProduct(MarketProduct marketProduct);
     }
 }

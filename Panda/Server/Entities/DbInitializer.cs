@@ -1,24 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace Server.Entities
 {
     public class DbInitializer
     {
-        public static void SeedDemoData(IPandaRepository pandaRepository)
+        public static void SeedDemoData(IPandaRepository pandaRepo)
         {
-            var traders = pandaRepository.GetAllTraders();
+            var products = pandaRepo.GetAllProducts();
+            if(!products.Any())
+            {
+                pandaRepo.AddMarketProduct(new MarketProduct("LAX"));
+                pandaRepo.AddMarketProduct(new MarketProduct("ISI"));
+                pandaRepo.AddMarketProduct(new MarketProduct("WOT"));
+            }
+
+            var traders = pandaRepo.GetAllTraders();
             if (!traders.Any())
             {
-                var newTrader = new Trader("JBelfort");
-                pandaRepository.AddTrader(newTrader);
-
-                newTrader = new Trader("WBuffett");
-                pandaRepository.AddTrader(newTrader);
+                pandaRepo.AddTrader(new Trader("JBelfort"));
+                pandaRepo.AddTrader(new Trader("WBuffett"));
             }
-            traders = pandaRepository.GetAllTraders();
+
+
         }
     }
 }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Server.Entities
 {
@@ -11,7 +9,7 @@ namespace Server.Entities
         public Trader Trader { get; set; }
         public int TraderId { get; set; }
 
-        public ICollection<DepotPosition> Positions { get; set; }
-        public ICollection<DepotTransaction> Transactions { get; set; }
+        public ICollection<DepotPosition> Positions { get; set; } = new Collection<DepotPosition>();
+        public ICollection<DepotTransaction> Transactions { get; set; } = new Collection<DepotTransaction>();
     }
 }

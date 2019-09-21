@@ -41,9 +41,10 @@ namespace Server.Entities
             return context.Products;
         }
 
-        public void AddProduct(Product product)
+        public void AddMarketProduct(MarketProduct marketProduct)
         {
-            context.Products.Add(product);
+            context.Market.Add(marketProduct);
+            context.Products.Add(marketProduct.Product);
             context.SaveChanges();
         }
 
