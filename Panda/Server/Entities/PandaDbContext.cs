@@ -17,6 +17,9 @@ namespace Server.Entities
         {
             modelBuilder.Entity<DepotPosition>()
                 .HasKey(dp => new { dp.ProductCode, dp.DepotId });
+
+            modelBuilder.Entity<Trader>()
+                .HasAlternateKey(t => t.Name);
         }
     }
 }

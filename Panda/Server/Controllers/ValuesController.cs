@@ -34,6 +34,8 @@ namespace Server.Controllers
 
             var allTradersFull = pandaRepo.GetAllTraders();
 
+            var traderNo1 = pandaRepo.GetTraderById(1);
+
             return Ok(traderModels);
         }
 
