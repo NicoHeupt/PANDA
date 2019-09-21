@@ -22,6 +22,7 @@ namespace Server
                 {
                     var context = services.GetRequiredService<PandaDbContext>();
                     context.Database.EnsureCreated();
+                    DbInitializer.SeedDemoData(services.GetRequiredService<IPandaRepository>());
                 }
                 catch (Exception ex)
                 {
