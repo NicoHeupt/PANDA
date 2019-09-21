@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Server.Entities
 {
@@ -9,11 +10,6 @@ namespace Server.Entities
         public Trader Trader { get; set; }
 
         public decimal Balance { get; set; }
-        public ICollection<BankTransaction> BankTransactions { get; set; }
-
-        public BankAccount()
-        {
-            Balance = 0;
-        }
+        public ICollection<BankTransaction> BankTransactions { get; set; } = new Collection<BankTransaction>();
     }
 }
