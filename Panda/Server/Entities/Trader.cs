@@ -18,17 +18,17 @@ namespace Server.Entities
         /// </summary>
         public string Name { get; set; }
 
-        [ForeignKey("BankAccount")]
-        public int BankAccountId { get; set; }
+        //[ForeignKey("BankAccount")]
+        //public int BankAccountId { get; set; }
         public BankAccount BankAccount { get; set; }
 
-        [ForeignKey("Depot")]
-        public int DepotId { get; set; }
+        //[ForeignKey("Depot")]
+        //public int DepotId { get; set; }
         public Depot Depot { get; set; }
 
         public ICollection<BookingOrder> BookingOrders { get; set; }
 
-        public Trader()
+        private Trader()
         {
 
         }

@@ -20,6 +20,18 @@ namespace Server.Entities
 
             modelBuilder.Entity<Trader>()
                 .HasAlternateKey(t => t.Name);
+
+            modelBuilder.Entity<Trader>()
+                .OwnsOne(t => t.BankAccount);
+
+            modelBuilder.Entity<Trader>()
+                .OwnsOne(t => t.Depot);
+
+            modelBuilder.Entity<BankAccount>()
+                .HasMany(ba => ba.BankTransactions).WithOne();
+
+            modelBuilder.Entity<Depot>()
+                .HasMany(ba => ba.Transactions).WithOne();
         }
     }
 }

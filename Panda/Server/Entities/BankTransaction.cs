@@ -7,20 +7,23 @@ namespace Server.Entities
     {
         public int Id { get; set; }
 
-        [ForeignKey("BankAccount")]
-        public int BankAccountId { get; set; }
         public BankAccount BankAccount { get; set; }
 
         public DateTime Time { get; set; }
         public decimal Amount { get; set; }
 
-        public BankTransaction(int bankAccountId, decimal amount)
+        public BankTransaction()
         {
-            BankAccountId = bankAccountId;
+
+        }
+
+        public BankTransaction(BankAccount bankAccount, decimal amount)
+        {
+            BankAccount = bankAccount;
             Amount = amount;
         }
 
-        public BankTransaction(Trader trader, decimal amount) : this(trader.BankAccountId, amount) 
+        public BankTransaction(Trader trader, decimal amount) : this(trader.BankAccount, amount) 
         {
             BankAccount = trader.BankAccount;
         }

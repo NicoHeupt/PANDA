@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,17 +24,23 @@ namespace Server.Entities
 
         public Trader GetTraderById(int traderId)
         {
-            return context.Traders.FirstOrDefault(t => t.Id == traderId);
+            return context.Traders
+                .Include(t => t.BankAccount)
+                .Include(t => t.Depot)
+                .FirstOrDefault(t => t.Id == traderId);
         }
 
         public Trader GetTraderByName(string traderName)
         {
-            return context.Traders.FirstOrDefault(t => t.Name == traderName);
+            return context.Traders
+                .Include(t => t.BankAccount)
+                .Include(t => t.Depot)
+                .FirstOrDefault(t => t.Name == traderName);
         }
 
-        public Trader GetTraderByBankAccountId(int bankAccountId)
+        public Trader GetTraderByBankAccount(BankAccount bankAccount)
         {
-            return context.Traders.FirstOrDefault(t => t.BankAccountId == bankAccountId);
+            return context.Traders.FirstOrDefault(t => t.BankAccount.Id == bankAccount.Id);
         }
 
         public void AddTrader(Trader trader)
@@ -56,7 +63,7 @@ namespace Server.Entities
 
         public decimal BookBankTransaction(BankTransaction transaction)
         {
-            Trader trader = GetTraderByBankAccountId(transaction.BankAccountId);
+            Trader trader = GetTraderByBankAccount(transaction.BankAccount);
             context.Traders.Update(trader);
 
             decimal newBalance = trader.BankAccount.Balance + transaction.Amount;
@@ -68,11 +75,11 @@ namespace Server.Entities
             return newBalance;
         }
 
-        public BankAccount GetBankAccount(int BankAccountId)
-        {
-            Trader trader = context.Traders.FirstOrDefault(t => t.BankAccountId == BankAccountId);
-            return trader.BankAccount;
-        }
+        //public BankAccount GetBankAccount(int BankAccountId)
+        //{
+        //    Trader trader = context.Traders.FirstOrDefault(t => t.BankAccountId == BankAccountId);
+        //    return trader.BankAccount;
+        //}
 
         #endregion
 

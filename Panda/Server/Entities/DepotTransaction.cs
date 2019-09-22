@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,8 +10,10 @@ namespace Server.Entities
     {
         public int Id { get; set; }
 
-        public Depot Depot { get; set; }
+        [ForeignKey("Depot")]
         public int DepotId { get; set; }
+        public Depot Depot { get; set; }
+        
         
         public Product Product { get; set; }
         public int ProductId { get; set; }

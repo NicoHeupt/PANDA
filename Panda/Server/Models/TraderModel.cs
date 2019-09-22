@@ -12,12 +12,12 @@ namespace Server.Models
         /// </summary>
         public string Name { get; set; }
 
-        public int BankAccountId { get; private set; }
+        public BankAccount BankAccount { get; private set; }
         //public BankAccount BankAccount { get; private set; } = new BankAccount();
         //TODO: hypermedia link zum bankaccount via api
         //TODO: maybe add balance here?
 
-        public int DepotId { get; private set; }
+        public Depot Depot { get; private set; }
         //public Depot Depot { get; private set; } = new Depot();
         //TODO: hypermedia link zum bankaccount via api
 
@@ -30,8 +30,8 @@ namespace Server.Models
         {
             Id = trader.Id;
             Name = trader.Name;
-            BankAccountId = trader.BankAccountId;
-            DepotId = trader.DepotId;
+            BankAccount = trader.BankAccount;
+            Depot = trader.Depot;
             BankBalance = trader.BankAccount.Balance;
         }
     }
