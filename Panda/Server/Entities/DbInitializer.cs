@@ -17,10 +17,9 @@ namespace Server.Entities
             var traders = pandaRepo.GetAllTraders();
             if (!traders.Any())
             {
-                pandaRepo.AddTrader(new Trader("WBuffett"));
-                
-                var jb = new Trader("JBelfort");
-                pandaRepo.AddTrader(jb);
+                pandaRepo.AddNewTrader("WBuffett");
+                pandaRepo.AddNewTrader("JBelfort");
+                var jb = pandaRepo.GetTraderByName("JBelfort");
                 var bt = new BankTransaction(jb, 20.0m);
                 pandaRepo.BookBankTransaction( bt );
 
