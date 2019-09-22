@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <title>@ViewBag.Title</title>
+</head>
+
+<body class="bg-dark text-light">
+
+        @*<div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">PANDa</a></li>
+                <li><a asp-controller="Feedback" asp-action="Index">Kontakt</a></li>
+            </ul>
+        </div>*@
+
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #000000;">
+        <a class="navbar-brand" href="#">PANDa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid" style="margin-top:20px">
+        @RenderBody()
+    </div>
+
+</body>
+</html>

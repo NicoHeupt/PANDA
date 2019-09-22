@@ -19,7 +19,9 @@ namespace Server.Entities
 
         public IEnumerable<Trader> GetAllTraders()
         {
-            return context.Traders;
+            return context.Traders
+                .Include(t => t.BankAccount)
+                .Include(t => t.Depot);
         }
 
         public Trader GetTraderById(int traderId)
