@@ -19,6 +19,11 @@ namespace Server.Entities
         public int MarketProductId { get; private set; }
 
         /// <summary>
+        /// True if Order has been booked successfully
+        /// </summary>
+        public bool Booked { get; set; }
+        
+        /// <summary>
         /// Number of pieces sold.
         /// Positive Amount: Trader BUYS from market
         /// Negative Amount: Trader SELLS to market

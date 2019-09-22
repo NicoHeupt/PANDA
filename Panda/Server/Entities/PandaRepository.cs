@@ -118,5 +118,16 @@ namespace Server.Entities
 
         #endregion
 
+
+        public void PlaceBookingOrder(BookingOrder bookingOrder)
+        {
+            context.BookingOrders.Add(bookingOrder);
+            throw new NotImplementedException();
+        }
+
+        public void BookBookingOrder(BookingOrder bookingOrder)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
