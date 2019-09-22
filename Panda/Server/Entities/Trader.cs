@@ -19,18 +19,25 @@ namespace Server.Entities
         public string Name { get; set; }
 
         [ForeignKey("BankAccount")]
-        public int BankAccountId { get; private set; }
-        public BankAccount BankAccount { get; private set; } = new BankAccount();
+        public int BankAccountId { get; set; }
+        public BankAccount BankAccount { get; set; }
 
         [ForeignKey("Depot")]
-        public int DepotId { get; private set; }
-        public Depot Depot { get; private set; } = new Depot();
+        public int DepotId { get; set; }
+        public Depot Depot { get; set; }
 
         public ICollection<BookingOrder> BookingOrders { get; set; }
+
+        public Trader()
+        {
+
+        }
 
         public Trader(string name)
         {
             Name = name;
+            BankAccount = new BankAccount();
+            Depot = new Depot();
         }
     }
 }

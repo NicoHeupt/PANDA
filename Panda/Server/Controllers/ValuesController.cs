@@ -36,6 +36,9 @@ namespace Server.Controllers
 
             var traderNo1 = pandaRepo.GetTraderById(1);
 
+            var jb = pandaRepo.GetTraderByName("JBelfort");
+            var jbalance = jb.BankAccount.Balance;
+
             return Ok(traderModels);
         }
 

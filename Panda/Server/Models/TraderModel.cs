@@ -24,12 +24,15 @@ namespace Server.Models
         //public ICollection<BookingOrder> BookingOrders { get; set; }
         //TODO: offene bookingorders?
 
+        public decimal BankBalance { get; set; } //TODO: remove this
+
         public TraderModel(Trader trader)
         {
             Id = trader.Id;
             Name = trader.Name;
             BankAccountId = trader.BankAccountId;
             DepotId = trader.DepotId;
+            BankBalance = trader.BankAccount.Balance;
         }
     }
 }
