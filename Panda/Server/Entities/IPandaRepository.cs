@@ -8,7 +8,7 @@ namespace Server.Entities
         IEnumerable<Trader> GetAllTraders();
         Trader GetTraderById(int traderId);
         Trader GetTraderByName(string traderName);
-        void AddTrader(Trader trader);
+        void AddNewTrader(string name);
 
         // Bank
         /// <summary>Move cash. Returns new BankAccount balance.</summary>
@@ -16,6 +16,12 @@ namespace Server.Entities
 
         // Products
         IEnumerable<Product> GetAllProducts();
+        Product GetProduct(string code);
+
+        // Market
+        IEnumerable<MarketProduct> GetAllMarketProducts();
+
+        /// <summary>Add a product to the market. Generates a MarketProduct and a Product entity.</summary>
         void AddMarketProduct(MarketProduct marketProduct);
     }
 }

@@ -1,8 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Server.Entities
 {
@@ -15,12 +13,11 @@ namespace Server.Entities
             context = pandaDbContext;
         }
 
+
         #region Traders
 
         public IEnumerable<Trader> GetAllTraders()
         {
-            var foo = context.Traders.Include(trader => trader.BankAccount);
-            var bar = context.Traders;
             return context.Traders;
         }
 
@@ -45,6 +42,18 @@ namespace Server.Entities
             context.SaveChanges();
         }
 
+        public void AddNewTrader(string name)
+        {
+            Trader newTrader = new Trader(name);
+            context.Traders.Add(newTrader);
+            context.SaveChanges();
+        }
+
+        #endregion
+
+
+        #region Bank
+
         public decimal BookBankTransaction(BankTransaction transaction)
         {
             Trader trader = GetTraderByBankAccountId(transaction.BankAccountId);
@@ -65,8 +74,8 @@ namespace Server.Entities
             return trader.BankAccount;
         }
 
-
         #endregion
+
 
         #region Products
 
@@ -75,6 +84,17 @@ namespace Server.Entities
             return context.Products;
         }
 
+        public Product GetProduct(string code)
+        {
+            return context.Products.FirstOrDefault(p => p.Code == code);
+
+        }
+
+        #endregion
+
+
+        #region Market
+
         public void AddMarketProduct(MarketProduct marketProduct)
         {
             context.Market.Add(marketProduct);
@@ -82,6 +102,12 @@ namespace Server.Entities
             context.SaveChanges();
         }
 
+        public IEnumerable<MarketProduct> GetAllMarketProducts()
+        {
+            return context.Market;
+        }
+
         #endregion
+
     }
 }
