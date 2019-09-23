@@ -11,6 +11,7 @@ namespace Server.Entities
 
         public DateTime Time { get; set; }
         public decimal Amount { get; set; }
+        public string Reason { get; set; }
 
         public BankTransaction()
         {

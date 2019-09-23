@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,9 +15,11 @@ namespace Server.Entities
 
         public Trader Trader { get; private set; }
         public int TraderId { get; private set; }
-        
+
+
+        [ForeignKey("MarketProduct")]
+        public string ProductCode { get; set; }
         public MarketProduct MarketProduct { get; private set; }
-        public int MarketProductId { get; private set; }
 
         /// <summary>
         /// True if Order has been booked successfully
@@ -36,5 +39,21 @@ namespace Server.Entities
         /// With negative Amount (Trader selling): This is the lowest price it will be sold for.
         /// </summary>
         public decimal Threshold { get; private set; }
+
+        private BookingOrder()
+        {
+
+        }
+
+        public BookingOrder(Trader trader, MarketProduct marketProduct, int amount, decimal threshold)
+        {
+            Trader = trader;
+            TraderId = trader.Id;
+            MarketProduct = marketProduct;
+            ProductCode = marketProduct.ProductCode;
+            Amount = amount;
+            Threshold = threshold;
+            Booked = false;
+        }
     }
 }

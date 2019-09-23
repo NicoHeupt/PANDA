@@ -116,18 +116,82 @@ namespace Server.Entities
             return context.Market;
         }
 
+        public MarketProduct GetMarketProduct(string productCode)
+        {
+            return context.Market.FirstOrDefault(mp => mp.ProductCode == productCode);
+        }
+
+        public int IncreaseMarketProductAmount(string productCode, int addedAmount)
+        {
+            var marketProduct = GetMarketProduct(productCode);
+            context.Market.Update(marketProduct);
+
+            marketProduct.AmountAvailable += addedAmount;
+
+            context.SaveChanges();
+            return marketProduct.AmountAvailable;
+        }
+
+        public decimal SetMarketProductPrice(string productCode, decimal newPrice)
+        {
+            var marketProduct = GetMarketProduct(productCode);
+            context.Market.Update(marketProduct);
+
+            marketProduct.Price = newPrice;
+
+            context.SaveChanges();
+            return marketProduct.Price;
+        }
+
         #endregion
 
+        public BookingOrder GetBookingOrder(int id)
+        {
+            return context.BookingOrders.FirstOrDefault(bo => bo.Id == id);
+        }
+
+        public IEnumerable<BookingOrder> GetBookingOrdersUnbooked()
+        {
+            return context.BookingOrders.Where(bo => !bo.Booked);
+        }
+
+        public IEnumerable<BookingOrder> GetBookingOrdersByTrader(Trader trader)
+        {
+            return context.BookingOrders.Where(bo => bo.Trader.Id == trader.Id);
+        }
 
         public void PlaceBookingOrder(BookingOrder bookingOrder)
         {
             context.BookingOrders.Add(bookingOrder);
-            throw new NotImplementedException();
+            context.SaveChanges();
         }
 
         public void BookBookingOrder(BookingOrder bookingOrder)
         {
+            var marketProduct = GetMarketProduct(bookingOrder.MarketProduct.ProductCode);
+
+            if(marketProduct.Price <= bookingOrder.Threshold)
+            {
+                var trader = GetTraderById(bookingOrder.Trader.Id);
+                context.Traders.Update(trader);
+                context.Market.Update(marketProduct);
+
+                var depotTransaction = new DepotTransaction(trader, marketProduct, bookingOrder.Amount);
+
+                var bankTransaction = new BankTransaction(trader, -depotTransaction.Total); //TODO: Verwendungszweck
+                BookBankTransaction(bankTransaction);
+
+                var depotPosition = trader.Depot.GetPosition(marketProduct.Product);
+                depotPosition.Amount += depotTransaction.Amount;
+
+                context.SaveChanges();
+            }
+        }
+
+        public IEnumerable<BookingOrder> GetBookingOrdersByTrader()
+        {
             throw new NotImplementedException();
         }
+
     }
 }
