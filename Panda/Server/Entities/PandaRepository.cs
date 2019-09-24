@@ -178,7 +178,7 @@ namespace Server.Entities
 
                 var depotTransaction = new DepotTransaction(trader, marketProduct, bookingOrder.Amount);
 
-                var bankTransaction = new BankTransaction(trader, -depotTransaction.Total); //TODO: Verwendungszweck
+                var bankTransaction = new BankTransaction(trader, -depotTransaction.Total, depotTransaction.ReasonString); //TODO: Verwendungszweck
                 BookBankTransaction(bankTransaction);
 
                 var depotPosition = trader.Depot.GetPosition(marketProduct.Product);

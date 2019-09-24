@@ -18,15 +18,17 @@ namespace Server.Entities
 
         }
 
-        public BankTransaction(BankAccount bankAccount, decimal amount)
+        public BankTransaction(BankAccount bankAccount, decimal amount, string reason = "")
         {
             BankAccount = bankAccount;
             Amount = amount;
+            Reason = reason;
         }
 
-        public BankTransaction(Trader trader, decimal amount) : this(trader.BankAccount, amount) 
+        public BankTransaction(Trader trader, decimal amount, string reason = "") : this(trader.BankAccount, amount, reason) 
         {
             BankAccount = trader.BankAccount;
         }
+
     }
 }
