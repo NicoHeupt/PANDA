@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Server.Entities;
 
 namespace Server.Controllers
 {
@@ -10,11 +11,38 @@ namespace Server.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        private readonly IPandaRepository pandaRepo;
+
+        public ValuesController(IPandaRepository pandaRepository)
         {
-            return new string[] { "value1", "value2" };
+            pandaRepo = pandaRepository;
+        }
+
+        //// GET api/values
+        //[HttpGet]
+        //public ActionResult<IEnumerable<string>> Get()
+        //{
+        //    return new string[] { "value1", "value2" };
+        //}
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Trader>> Get()
+        {
+            var traderModels = pandaRepo.GetAllTraders().Select(t => new Models.TraderModel(t));
+
+            var products = pandaRepo.GetAllProducts();
+
+            var allTradersFull = pandaRepo.GetAllTraders();
+
+            var traderNo1 = pandaRepo.GetTraderById(1);
+
+            var jb = pandaRepo.GetTraderByName("JBelfort");
+            var jbalance = jb.BankAccount.Balance;
+
+            var market = pandaRepo.GetAllMarketProducts();
+            var lax = pandaRepo.GetProduct("LAX");
+
+            return Ok(traderModels);
         }
 
         // GET api/values/5
