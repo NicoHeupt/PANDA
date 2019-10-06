@@ -45,6 +45,8 @@ namespace Server
 
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseAuthentication();
+            app.UseStaticFiles();
         }
     }
 }

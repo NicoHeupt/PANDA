@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Server.Entities
 {
-    public class PandaDbContext : DbContext
+    public class PandaDbContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Trader> Traders { get; set; }
@@ -15,6 +17,8 @@ namespace Server.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<DepotPosition>()
                 .HasKey(dp => new { dp.ProductCode, dp.DepotId });
 
