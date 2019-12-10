@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Server23.Data;
 
 namespace Server23.Data.Migrations
 {
     [DbContext(typeof(PandaDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20191210224728_ident1")]
+    partial class ident1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -166,7 +168,7 @@ namespace Server23.Data.Migrations
 
                     b.Property<string>("SecurityStamp");
 
-                    b.Property<int?>("TraderId");
+                    b.Property<int>("TraderId");
 
                     b.Property<bool>("TwoFactorEnabled");
 
@@ -183,7 +185,8 @@ namespace Server23.Data.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("TraderId");
+                    b.HasIndex("TraderId")
+                        .IsUnique();
 
                     b.ToTable("AspNetUsers");
                 });
@@ -408,8 +411,9 @@ namespace Server23.Data.Migrations
             modelBuilder.Entity("Server23.Entities.ApplicationUser", b =>
                 {
                     b.HasOne("Server23.Entities.Trader", "Trader")
-                        .WithMany()
-                        .HasForeignKey("TraderId");
+                        .WithOne()
+                        .HasForeignKey("Server23.Entities.ApplicationUser", "TraderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Server23.Entities.BankTransaction", b =>

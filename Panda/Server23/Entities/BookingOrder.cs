@@ -13,8 +13,9 @@ namespace Server23.Entities
     {
         public int Id { get; private set; }
 
-        public Trader Trader { get; private set; }
+        [ForeignKey("Trader")]
         public int TraderId { get; private set; }
+        public Trader Trader { get; private set; }
 
 
         [ForeignKey("MarketProduct")]
@@ -48,7 +49,7 @@ namespace Server23.Entities
         public BookingOrder(Trader trader, MarketProduct marketProduct, int amount, decimal threshold)
         {
             Trader = trader;
-            TraderId = trader.Id;
+            //TraderId = trader.Id;
             MarketProduct = marketProduct;
             ProductCode = marketProduct.ProductCode;
             Amount = amount;

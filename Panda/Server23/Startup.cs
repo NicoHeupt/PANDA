@@ -13,6 +13,8 @@ using Microsoft.EntityFrameworkCore;
 using Server23.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Server23.Models;
+using Server23.Entities;
 
 namespace Server23
 {
@@ -38,7 +40,7 @@ namespace Server23
             services.AddDbContext<PandaDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<PandaDbContext>();
 

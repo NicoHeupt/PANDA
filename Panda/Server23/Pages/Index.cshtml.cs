@@ -23,14 +23,15 @@ namespace Server23.Pages
 
         public void OnGet()
         {
-            Market = pandaRepo.GetAllMarketProducts()
-                .OrderBy(mp => mp.ProductCode)
-                .ToList();
+                Market = pandaRepo.GetAllMarketProducts()
+                    .OrderBy(mp => mp.ProductCode)
+                    .ToList();
 
-            Traders = pandaRepo.GetAllTraders()
-                .OrderBy(t => t.BankAccount.Balance)
-                .Reverse()
-                .ToList();
+                Traders = pandaRepo.GetAllTraders()
+                    .OrderBy(t => t.BankAccount.Balance)
+                    .Reverse()
+                    .ToList();
         }
+
     }
 }

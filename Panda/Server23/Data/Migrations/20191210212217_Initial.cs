@@ -4,10 +4,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Server23.Data.Migrations
 {
-    public partial class TakeOver : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AddColumn<int>(
+                name: "TraderId",
+                table: "AspNetUsers",
+                nullable: false,
+                defaultValue: 0);
+
             migrationBuilder.CreateTable(
                 name: "BankAccount",
                 columns: table => new
@@ -212,6 +218,12 @@ namespace Server23.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AspNetUsers_TraderId",
+                table: "AspNetUsers",
+                column: "TraderId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_BankTransaction_BankAccountId",
                 table: "BankTransaction",
                 column: "BankAccountId");
@@ -261,10 +273,22 @@ namespace Server23.Data.Migrations
                 name: "IX_Traders_DepotId",
                 table: "Traders",
                 column: "DepotId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_AspNetUsers_Traders_TraderId",
+                table: "AspNetUsers",
+                column: "TraderId",
+                principalTable: "Traders",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropForeignKey(
+                name: "FK_AspNetUsers_Traders_TraderId",
+                table: "AspNetUsers");
+
             migrationBuilder.DropTable(
                 name: "BankTransaction");
 
@@ -291,6 +315,14 @@ namespace Server23.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Depot");
+
+            migrationBuilder.DropIndex(
+                name: "IX_AspNetUsers_TraderId",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "TraderId",
+                table: "AspNetUsers");
         }
     }
 }

@@ -4,7 +4,7 @@ using Server23.Entities;
 
 namespace Server23.Data
 {
-    public class PandaDbContext : IdentityDbContext
+    public class PandaDbContext : IdentityDbContext<ApplicationUser>
     {
         public PandaDbContext(DbContextOptions<PandaDbContext> options)
             : base(options)
@@ -46,6 +46,12 @@ namespace Server23.Data
 
             //modelBuilder.Entity<Depot>()
             //    .HasOne(d => d.Trader).WithOne();
+
+            //modelBuilder.Entity<ApplicationUser>()
+            //    .HasOne(t => t.Trader).WithOne();
+
+            modelBuilder.Entity<BookingOrder>()
+                .HasOne(t => t.Trader).WithMany();
         }
     }
 }
