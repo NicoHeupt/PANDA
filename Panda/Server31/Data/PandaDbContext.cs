@@ -19,37 +19,23 @@ namespace Server31.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<DepotPosition>()
+                .HasKey(dp => new { dp.ProductCode, dp.DepotId });
+
             modelBuilder.Entity<Trader>()
                 .HasAlternateKey(t => t.Name);
 
             modelBuilder.Entity<Trader>()
-                .OwnsOne(t => t.BankAccount)
-                .WithOwner(ba => ba.Trader);
+                .OwnsOne(t => t.BankAccount);
 
             modelBuilder.Entity<Trader>()
-                .OwnsOne(t => t.Depot)
-                .WithOwner(d => d.Trader);
+                .OwnsOne(t => t.Depot);
 
             modelBuilder.Entity<BankAccount>()
-                .OwnsMany(ba => ba.BankTransactions)
-                .WithOwner(bt => bt.BankAccount);
+                .HasMany(ba => ba.BankTransactions).WithOne();
 
             modelBuilder.Entity<Depot>()
-                .OwnsMany(d => d.Transactions)
-                .WithOwner(t => t.Depot);
-
-            modelBuilder.Entity<Depot>()
-                .OwnsMany(d => d.Positions)
-                .WithOwner(p => p.Depot);
-
-            modelBuilder.Entity<DepotPosition>()
-                .HasOne(dp => dp.Product)
-                .WithMany()
-                .HasForeignKey(dp => dp.ProductCode);
-
-            modelBuilder.Entity<DepotPosition>()
-                .HasOne(dp => dp.Depot)
-                .WithOne();
+                .HasMany(ba => ba.Transactions).WithOne();
         }
     }
 }
