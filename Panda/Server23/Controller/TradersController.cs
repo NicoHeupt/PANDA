@@ -30,11 +30,20 @@ namespace Server23.Controller
             return Ok(traderModels);
         }
 
-        // GET: api/Traders/5
+        // GET: api/Traders/id/5
+        [Route("id/{id}")]
         [HttpGet("{id}")]
         public ActionResult<Trader> GetTrader(int id)
         {
             var traderModel = new TraderModel(pandaRepo.GetTraderById(id));
+            return Ok(traderModel);
+        }
+
+        // GET: api/Traders/JBelfort
+        [HttpGet("{name}")]
+        public ActionResult<Trader> GetTrader(string name)
+        {
+            var traderModel = new TraderModel(pandaRepo.GetTraderByName(name));
             return Ok(traderModel);
         }
 
