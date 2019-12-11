@@ -1,0 +1,65 @@
+﻿@page
+@model Server23.BookingModel
+@{
+    ViewData["Title"] = "Booking";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-sm-6">
+        <h4>Offene Buchungen</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Stückpreis</th>
+                    <th>Verfügbar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @*@foreach (var mp in Model.Market)
+                {
+                    <tr>
+                        <td>@mp.ProductCode</td>
+                        <td>@mp.Price</td>
+                        <td>@mp.AmountAvailable</td>
+                    </tr>
+                }*@
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-sm-6">
+        <h4>Neue Buchung</h4>
+        <form>
+            @* TODO: Produktliste anpassen je nach kaufen (alle) / Verkaufen (die aus depot) *@
+            <div class="form-group">
+                <input type="checkbox" checked data-toggle="toggle" data-on="Kaufen" data-off="Verkaufen" data-onstyle="success" data-offstyle="danger">
+            </div>
+            <div class="form-group">
+                <label for="productSelect">Produkt</label>
+                <select class="form-control" id="productSelect">
+                    @foreach (var mp in Model.Market)
+                    {
+                        <option>@mp.ProductCode</option>
+                    }
+                </select>
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Stück</span>
+                </div>
+                <input type="number" class="form-control" id="amountInput" placeholder="0">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">€</span>
+                </div>
+                <input type="number" step=".01" class="form-control" id="thresholdInput" placeholder="0,00">
+            </div>
+            <input class="btn btn-primary" type="submit" value="Buchungsauftrag erteilen!">
+        </form>
+    </div>
+
+</div>
