@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Server23.Data;
 using Server23.Entities;
 using Server23.Models;
+using Server23.Helpers;
 
 namespace Server23.Controller
 {
@@ -30,21 +34,30 @@ namespace Server23.Controller
             return Ok(traderModels);
         }
 
-        // GET: api/Traders/id/5
-        [Route("id/{id}")]
-        [HttpGet("{id}")]
-        public ActionResult<Trader> GetTrader(int id)
-        {
-            var traderModel = new TraderModel(pandaRepo.GetTraderById(id));
-            return Ok(traderModel);
-        }
+        //// GET: api/Traders/id/5
+        //[Route("id/{id}")]
+        //[HttpGet("{id}")]
+        //public ActionResult<Trader> GetTrader(int id)
+        //{
+        //    var traderModel = new TraderModel(pandaRepo.GetTraderById(id));
+        //    return Ok(traderModel);
+        //}
 
         // GET: api/Traders/JBelfort
+        [Authorize]
         [HttpGet("{name}")]
         public ActionResult<Trader> GetTrader(string name)
         {
-            var traderModel = new TraderModel(pandaRepo.GetTraderByName(name));
-            return Ok(traderModel);
+            //var z = UserHelpers.GetUsername(User);
+            //var traderModel = new TraderModel(pandaRepo.GetTraderByName(name));
+            //return Ok(traderModel);
+
+            if(name.ToUpper() == UserHelpers.GetUsername(User).ToUpper())
+            {
+                var traderModel = new TraderModel(pandaRepo.GetTraderByName(name));
+                return Ok(traderModel);
+            }
+            return Unauthorized();
         }
 
         //// PUT: api/Traders/5

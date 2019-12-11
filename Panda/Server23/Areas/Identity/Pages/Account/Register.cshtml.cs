@@ -68,7 +68,7 @@ namespace Server23.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser(Input.Username, Input.Email); // { Email = Input.Email, UserName = Input.Username };
+                var user = new ApplicationUser(Input.Username, Input.Email);
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
