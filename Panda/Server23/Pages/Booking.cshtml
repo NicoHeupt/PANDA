@@ -13,10 +13,10 @@
             <thead>
                 <tr>
                     <th>Code</th>
-                    <th>Menge</th>
-                    <th>Marktpreis</th>
-                    <th>Schwelle</th>
-                    <th>Schwelle∑</th>
+                    <th class="text-right">Menge</th>
+                    <th class="text-right">Marktpreis</th>
+                    <th class="text-right">Schwelle</th>
+                    <th class="text-right">Schwelle∑</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,7 +24,7 @@
                 {
                 <tr>
                     <td>@o.ProductCode</td>
-                    <td>@o.Amount</td>
+                    <td class="text-right">@o.Amount</td>
                     <td class="text-right">@o.MarketProduct.Price</td>
                     <td class="text-right">@o.Threshold</td>
                     <td class="text-right">@(o.Threshold*o.Amount)</td>
