@@ -13,33 +13,46 @@
             <thead>
                 <tr>
                     <th>Code</th>
-                    <th>Stückpreis</th>
-                    <th>Verfügbar</th>
+                    <th>Menge</th>
+                    <th>Marktpreis</th>
+                    <th>Schwelle</th>
+                    <th>Schwelle∑</th>
                 </tr>
             </thead>
             <tbody>
-                @*@foreach (var mp in Model.Market)
+                @foreach (var o in Model.OrdersUnbooked)
                 {
-                    <tr>
-                        <td>@mp.ProductCode</td>
-                        <td>@mp.Price</td>
-                        <td>@mp.AmountAvailable</td>
-                    </tr>
-                }*@
+                <tr>
+                    <td>@o.ProductCode</td>
+                    <td>@o.Amount</td>
+                    <td class="text-right">@o.MarketProduct.Price</td>
+                    <td class="text-right">@o.Threshold</td>
+                    <td class="text-right">@(o.Threshold*o.Amount)</td>
+
+                </tr>
+                }
             </tbody>
         </table>
     </div>
 
     <div class="col-sm-6">
         <h4>Neue Buchung</h4>
-        <form>
+        <form method="post">
             @* TODO: Produktliste anpassen je nach kaufen (alle) / Verkaufen (die aus depot) *@
             <div class="form-group">
-                <input type="checkbox" checked data-toggle="toggle" data-on="Kaufen" data-off="Verkaufen" data-onstyle="success" data-offstyle="danger">
+                <input type="checkbox" 
+                       asp-for="BuySellBool"
+                       class="form-control"
+                       data-toggle="toggle" 
+                       data-on="Kaufen" 
+                       data-off="Verkaufen" 
+                       data-onstyle="success" 
+                       data-offstyle="danger"
+                        />
             </div>
             <div class="form-group">
                 <label for="productSelect">Produkt</label>
-                <select class="form-control" id="productSelect">
+                <select class="form-control" id="productSelect" asp-for="ProductString">
                     @foreach (var mp in Model.Market)
                     {
                         <option>@mp.ProductCode</option>
@@ -50,13 +63,22 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Stück</span>
                 </div>
-                <input type="number" class="form-control" id="amountInput" placeholder="0">
+                <input type="number" 
+                       asp-for="AmountString"
+                       class="form-control" 
+                       id="amountInput" 
+                       placeholder="0">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">€</span>
                 </div>
-                <input type="number" step=".01" class="form-control" id="thresholdInput" placeholder="0,00">
+                <input type="number" 
+                       asp-for="ThresholdString"
+                       step=".01" 
+                       class="form-control" 
+                       id="thresholdInput" 
+                       placeholder="0,00">
             </div>
             <input class="btn btn-primary" type="submit" value="Buchungsauftrag erteilen!">
         </form>
