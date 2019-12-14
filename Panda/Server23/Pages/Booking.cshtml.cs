@@ -49,11 +49,9 @@ namespace Server23
 
         public void OnPost()
         {
-            BuySell BuySell;
-            if      (BuySellBool)  BuySell = Enums.BuySell.Buy;
-            else if (!BuySellBool) BuySell = Enums.BuySell.Sell;
-
             Int32.TryParse(AmountString, out int amount);
+            if (Bool2BuySell(BuySellBool) == BuySell.Sell) amount *= -1;
+
             Decimal.TryParse(ThresholdString.Replace(".", ","), out decimal threshold);
 
             Trader trader = pandaRepo.GetTraderByName(UserHelpers.GetUsername(User));
@@ -61,6 +59,12 @@ namespace Server23
 
             pandaRepo.PlaceBookingOrder(new BookingOrder(trader, marketProduct, amount, threshold));
             OnGet();
+        }
+
+        private BuySell Bool2BuySell(bool b)
+        {
+            if (!b) return BuySell.Buy;
+            else return BuySell.Sell;
         }
     }
 }
