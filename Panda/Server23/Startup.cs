@@ -40,14 +40,16 @@ namespace Server23
 
             services.AddDbContext<PandaDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")),
+                ServiceLifetime.Transient
+            );
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<PandaDbContext>();
 
             services.AddTransient<IPandaRepository, PandaRepository>();
-            //services.AddHostedService<MarketMovementService>();
+            services.AddHostedService<MarketMovementService>();
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {

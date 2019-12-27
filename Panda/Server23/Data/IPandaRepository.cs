@@ -35,7 +35,7 @@ namespace Server23.Data
         // Depot
         BookingOrder GetBookingOrder(int id);
         IEnumerable<BookingOrder> GetBookingOrdersUnbooked();
-        IEnumerable<BookingOrder> GetBookingOrdersByTrader();
+        IEnumerable<BookingOrder> GetBookingOrdersByTrader(Trader trader);
         void PlaceBookingOrder(BookingOrder bookingOrder);
         void BookBookingOrder(BookingOrder bookingOrder);
     }

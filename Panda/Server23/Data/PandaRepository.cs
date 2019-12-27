@@ -189,10 +189,5 @@ namespace Server23.Data
             }
         }
 
-        public IEnumerable<BookingOrder> GetBookingOrdersByTrader()
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }

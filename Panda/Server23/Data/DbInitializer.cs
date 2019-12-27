@@ -1,10 +1,35 @@
-﻿using System.Linq;
+﻿using System.Data;
+using System.Linq;
 using Server23.Entities;
 
 namespace Server23.Data
 {
     public class DbInitializer
     {
+        public static void SeedInitialProductData(IPandaRepository pandaRepo)
+        {
+            var products = pandaRepo.GetAllProducts();
+            if (!products.Any())
+            {
+                SetupProduct(pandaRepo, "LAX", 100, 0.01m);
+                SetupProduct(pandaRepo, "WOT", 1000, 0.01m);
+                SetupProduct(pandaRepo, "YSI", 10000, 0.01m);
+                SetupProduct(pandaRepo, "NWA", 2000, 0.01m);
+                SetupProduct(pandaRepo, "RPI", 2100, 0.01m);
+                SetupProduct(pandaRepo, "LOL", 2500, 0.01m);
+                SetupProduct(pandaRepo, "SXE", 200, 0.01m);
+                SetupProduct(pandaRepo, "RAW", 400, 0.01m);
+                SetupProduct(pandaRepo, "FCK", 5000, 0.01m);
+            }
+        }
+
+        private static void SetupProduct(IPandaRepository pandaRepo, string productCode, int initialAmount, decimal initalPrice)
+        {
+            pandaRepo.AddMarketProduct(new MarketProduct(productCode));
+            pandaRepo.IncreaseMarketProductAmount(productCode, initialAmount);
+            pandaRepo.SetMarketProductPrice(productCode, initalPrice);
+        }
+
         public static void SeedDemoData(IPandaRepository pandaRepo)
         {
             var products = pandaRepo.GetAllProducts();

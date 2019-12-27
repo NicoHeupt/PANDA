@@ -20,7 +20,8 @@ namespace Server23
                 {
                     var context = services.GetRequiredService<PandaDbContext>();
                     context.Database.EnsureCreated();
-                    DbInitializer.SeedDemoData(services.GetRequiredService<IPandaRepository>());
+                    //DbInitializer.SeedDemoData(services.GetRequiredService<IPandaRepository>());
+                    DbInitializer.SeedInitialProductData(services.GetRequiredService<IPandaRepository>());
                 }
                 catch (Exception ex)
                 {

@@ -16,6 +16,7 @@ namespace Server23
         private readonly ILogger _logger;
         private Timer _timer;
         private List<MarketProduct> marketProducts;
+        private List<BookingOrder> openBookingOrders;
         private IServiceScopeFactory ServiceScopeFactory;
         private IPandaRepository pandaRepo;
 
@@ -58,13 +59,17 @@ namespace Server23
                     pandaRepo = services.GetRequiredService<IPandaRepository>();
 
                     int addedAmount = 25;
+                    _logger.LogInformation($"Add {addedAmount} pieces of {mp.ProductCode}...");
                     pandaRepo.IncreaseMarketProductAmount(mp.ProductCode, addedAmount);
 
                     decimal newPrice = CalcNewPrice(mp, addedAmount);
+                    _logger.LogInformation($"Set price of {mp.ProductCode} to {newPrice}...");
                     pandaRepo.SetMarketProductPrice(mp.ProductCode, newPrice);
+
+                    BookAllOpenBookingOrders();
                 }
             }
-            _logger.LogInformation("MarketMovementService moved the market.");
+            _logger.LogInformation("MarketMovementService done moving the market.");
         }
 
         private decimal CalcNewPrice(MarketProduct marketProduct, int addedAmount)
@@ -75,6 +80,28 @@ namespace Server23
             return Convert.ToDecimal((1 / Math.Pow(newAmount, 1.01)) * 1000000);
         }
 
+        private void BookAllOpenBookingOrders()
+        {
+            using (var scope = ServiceScopeFactory.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                pandaRepo = services.GetRequiredService<IPandaRepository>();
+                openBookingOrders = pandaRepo.GetBookingOrdersUnbooked().ToList();
+                foreach( var bookingOrder in openBookingOrders)
+                {
+                    try
+                    {
+                        _logger.LogInformation($"Booking BookingOrder {bookingOrder.Id}: {bookingOrder.Amount} {bookingOrder.ProductCode} by {bookingOrder.Trader.Name}");
+                        pandaRepo.BookBookingOrder(bookingOrder);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogInformation("Booking failed!!");
+                    }
+
+                }
+            }
+        }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
