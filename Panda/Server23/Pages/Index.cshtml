@@ -1,0 +1,50 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h4>Angebot</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Stückpreis</th>
+                    <th>Verfügbar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var mp in Model.Market)
+                {
+                    <tr>
+                        <td>@mp.ProductCode</td>
+                        <td>@mp.Price</td>
+                        <td>@mp.AmountAvailable</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-6">
+        <h4>Trader Charts</h4>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Kontostand</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var t in Model.Traders)
+                {
+                    <tr>
+                        <td>@t.Name</td>
+                        <td>@t.BankAccount.Balance</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

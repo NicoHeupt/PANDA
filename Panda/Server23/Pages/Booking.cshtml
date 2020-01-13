@@ -1,0 +1,159 @@
+﻿@page
+@model Server23.BookingModel
+@{
+    ViewData["Title"] = "Booking";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+    <h4>Kaufen ⬊</h4>
+    <div class="row">   
+        <div class="col-sm-8">
+            <h5>Offene Aufträge</h5>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th class="text-right">Menge</th>
+                        <th class="text-right">Marktpreis</th>
+                        <th class="text-center" colspan="2">Schwelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var o in Model.OrdersUnbooked)
+                    {
+                        @if (o.Amount > 0)
+                        {
+                            <tr>
+                                <td>@o.ProductCode</td>
+                                <td class="text-right">@o.Amount</td>
+                                <td class="text-right">@o.MarketProduct.Price</td>
+                                <td class="text-right">@o.Threshold €</td>
+                                <td class="text-right">@(o.Threshold*o.Amount) €</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm-4">
+            <h5>Neuer Auftrag</h5>
+            <form method="post">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Produkt</span>
+                    </div>
+                    <select class="form-control" id="productSelect" asp-for="ProductString">
+                        @foreach (var mp in Model.Market)
+                        {
+                            <option>@mp.ProductCode</option>
+                        }
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Stück</span>
+                    </div>
+                    <input type="number"
+                           asp-for="AmountString"
+                           class="form-control"
+                           id="amountInput"
+                           placeholder="0">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Max €</span>
+                    </div>
+                    <input type="number"
+                           asp-for="ThresholdString"
+                           step=".01"
+                           class="form-control"
+                           id="thresholdInput"
+                           placeholder="0,00">
+                </div>
+                <input type="hidden" 
+                       asp-for="BuySellBool"
+                       value="false">
+                <input class="btn btn-primary"
+                       type="submit"
+                       value="Kaufauftrag erteilen!">
+            </form>
+        </div>
+
+    </div>
+    <hr />
+    <h4>Verkaufen ⬈</h4>
+    <div class="row">
+
+        <div class="col-sm-8">
+            <h5>Offene Aufträge</h5>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th class="text-right">Menge</th>
+                        <th class="text-right">Marktpreis</th>
+                        <th class="text-center" colspan="2">Schwelle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var o in Model.OrdersUnbooked)
+                    {
+                        @if (o.Amount < 0)
+                        {
+                            <tr>
+                                <td>@o.ProductCode</td>
+                                <td class="text-right">@(o.Amount * -1)</td>
+                                <td class="text-right">@o.MarketProduct.Price</td>
+                                <td class="text-right">@o.Threshold €</td>
+                                <td class="text-right">@(o.Threshold * (o.Amount * -1)) €</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-sm-4">
+            <h5>Neuer Auftrag</h5>
+            <form method="post">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Produkt</span>
+                    </div>
+                    <select class="form-control" id="productSelect" asp-for="ProductString">
+                        @foreach (var mp in Model.Market)
+                        {
+                            <option>@mp.ProductCode</option>
+                        }
+                    </select>
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Stück</span>
+                    </div>
+                    <input type="number"
+                           asp-for="AmountString"
+                           class="form-control"
+                           id="amountInput"
+                           placeholder="0">
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Min €</span>
+                    </div>
+                    <input type="number"
+                           asp-for="ThresholdString"
+                           step=".01"
+                           class="form-control"
+                           id="thresholdInput"
+                           placeholder="0,00">
+                </div>
+                <input type="hidden"
+                       asp-for="BuySellBool"
+                       value="true">
+                <input class="btn btn-primary" type="submit" value="Verkaufsauftrag erteilen!">
+            </form>
+        </div>
+
+    </div>
